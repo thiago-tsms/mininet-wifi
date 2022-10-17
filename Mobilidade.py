@@ -17,15 +17,49 @@ def start_teste(args):
     # controller= Cotroller
     # switch = UserAP -> suporta meter tables (OpenFlow)
     net = Mininet_wifi(topo=None)
-
-    info("*** Criando roteadores \n")
-    r1 = net.addHost('r1', cls=Node, ip='0.0.0.0')
     
-    info("*** Criando hosts \n")
-    h1 = net.addHost('h1', cls=Host, ip='10.0.1.10/24', defaultRoute='10.0.1.1')
-    h2 = net.addHost('h2', cls=Host, ip='10.0.2.10/24', defaultRoute='10.0.2.1')
-    h3 = net.addHost('h3', cls=Host, ip='10.0.3.10/24', defaultRoute='10.0.3.1')
-    h4 = net.addHost('h4', cls=Host, ip='10.0.4.10/24', defaultRoute='10.0.4.1')
+    info("*** Criando switches \n")
+    sw1 = net.addSwitch('sw1', ip='10.0.0.11/24')
+    sw2 = net.addSwitch('sw2', ip='10.0.0.12/24')
+    sw3 = net.addSwitch('sw3', ip='10.0.0.13/24')
+    sw4 = net.addSwitch('sw4', ip='10.0.0.14/24')
+    sw5 = net.addSwitch('sw5', ip='10.0.0.15/24')
+    
+    net.addLink(sw1, sw5, intfName1='sw1-sw5', cls=TCLink)
+    net.addLink(sw2, sw5, intfName1='sw2-sw5', cls=TCLink)
+    net.addLink(sw3, sw5, intfName1='sw3-sw5', cls=TCLink)
+    net.addLink(sw4, sw5, intfName1='sw4-sw5', cls=TCLink)
+    
+    net.addLink(sw1, sw2, intfName1='sw1-sw2', cls=TCLink)
+    net.addLink(sw3, sw4, intfName1='sw3-sw4', cls=TCLink)
+    
+    # sw3----------sw4
+    #         |
+    #        sw5 
+    #         |      
+    # sw1----------sw2
+
+    info("*** Criando Access Points \n")
+#     ap1 = net.addAccessPoint('ap1', ip='10.0.0.20/24', ssid='new-ssid', mode='g', channel='1', position='50,50,0')
+#     ap2 = net.addAccessPoint('ap2', ip='10.0.0.21/24', ssid='new-ssid', mode='g', channel='1', position='85,175,0')
+#     ap3 = net.addAccessPoint('ap3', ip='10.0.0.22/24', ssid='new-ssid', mode='g', channel='1', position='175,70,0')
+#     ap4 = net.addAccessPoint('ap3', ip='10.0.0.22/24', ssid='new-ssid', mode='g', channel='1', position='175,70,0')
+    
+    info("*** Criando Stations \n")
+#     sta1 = net.addStation('sta1', mac='00:00:00:00:00:10', ip='10.0.0.30/24')
+#     sta2 = net.addStation('sta2', mac='00:00:00:00:00:20', ip='10.0.0.31/24')
+#     sta3 = net.addStation('sta3', mac='00:00:00:00:00:30', ip='10.0.0.32/24')
+#     sta4 = net.addStation('sta4', mac='00:00:00:00:00:40', ip='10.0.0.33/24')
+    
+    
+    
+#     r1 = net.addHost('r1', cls=Node, ip='0.0.0.0')
+    
+#     info("*** Criando hosts \n")
+#     h1 = net.addHost('h1', cls=Host, ip='10.0.1.10/24', defaultRoute='10.0.1.1')
+#     h2 = net.addHost('h2', cls=Host, ip='10.0.2.10/24', defaultRoute='10.0.2.1')
+#     h3 = net.addHost('h3', cls=Host, ip='10.0.3.10/24', defaultRoute='10.0.3.1')
+#     h4 = net.addHost('h4', cls=Host, ip='10.0.4.10/24', defaultRoute='10.0.4.1')
 
     #h1.cmd("route add default gw 10.0.1.1")
     #h2.cmd("route add default gw 10.0.2.1")
