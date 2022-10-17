@@ -40,68 +40,31 @@ def start_teste(args):
     # sw1----------sw2
 
     info("*** Criando Access Points \n")
-#     ap1 = net.addAccessPoint('ap1', ip='10.0.0.20/24', ssid='new-ssid', mode='g', channel='1', position='50,50,0')
-#     ap2 = net.addAccessPoint('ap2', ip='10.0.0.21/24', ssid='new-ssid', mode='g', channel='1', position='85,175,0')
-#     ap3 = net.addAccessPoint('ap3', ip='10.0.0.22/24', ssid='new-ssid', mode='g', channel='1', position='175,70,0')
-#     ap4 = net.addAccessPoint('ap3', ip='10.0.0.22/24', ssid='new-ssid', mode='g', channel='1', position='175,70,0')
+    ap1 = net.addAccessPoint('ap1', ip='10.0.0.21/24', ssid='ssid-ap1', mode='g', channel='1', position='50,50,0')
+    ap2 = net.addAccessPoint('ap2', ip='10.0.0.22/24', ssid='ssid-ap2', mode='g', channel='1', position='85,175,0')
+    ap3 = net.addAccessPoint('ap3', ip='10.0.0.23/24', ssid='ssid-ap3', mode='g', channel='1', position='175,70,0')
+    ap4 = net.addAccessPoint('ap3', ip='10.0.0.24/24', ssid='ssid-ap4', mode='g', channel='1', position='175,70,0')
+    
+    net.addLink(ap1, sw1, intfName1='ap1-sw1', cls=TCLink)
+    net.addLink(ap2, sw2, intfName1='ap2-sw2', cls=TCLink)
+    net.addLink(ap3, sw3, intfName1='ap3-sw3', cls=TCLink)
+    net.addLink(ap4, sw4, intfName1='ap4-sw4', cls=TCLink)
     
     info("*** Criando Stations \n")
-#     sta1 = net.addStation('sta1', mac='00:00:00:00:00:10', ip='10.0.0.30/24')
-#     sta2 = net.addStation('sta2', mac='00:00:00:00:00:20', ip='10.0.0.31/24')
-#     sta3 = net.addStation('sta3', mac='00:00:00:00:00:30', ip='10.0.0.32/24')
-#     sta4 = net.addStation('sta4', mac='00:00:00:00:00:40', ip='10.0.0.33/24')
-    
-    
-    
-#     r1 = net.addHost('r1', cls=Node, ip='0.0.0.0')
-    
-#     info("*** Criando hosts \n")
-#     h1 = net.addHost('h1', cls=Host, ip='10.0.1.10/24', defaultRoute='10.0.1.1')
-#     h2 = net.addHost('h2', cls=Host, ip='10.0.2.10/24', defaultRoute='10.0.2.1')
-#     h3 = net.addHost('h3', cls=Host, ip='10.0.3.10/24', defaultRoute='10.0.3.1')
-#     h4 = net.addHost('h4', cls=Host, ip='10.0.4.10/24', defaultRoute='10.0.4.1')
-
-    #h1.cmd("route add default gw 10.0.1.1")
-    #h2.cmd("route add default gw 10.0.2.1")
-    #h3.cmd("route add default gw 10.0.3.1")
-    #h4.cmd("route add default gw 10.0.4.1")
-
-
-    #sw1 = net.addSwitch('sw1', ip='10.0.0.10/24')
-    #sw2 = net.addSwitch('sw2', ip='10.0.0.11/24')
-    #sw3 = net.addSwitch('sw3', ip='10.0.0.12/24')
-
-    #ap1 = net.addAccessPoint('ap1', ip='10.0.0.20/24', ssid='new-ssid', mode='g', channel='1',position='50,50,0')
-    #ap2 = net.addAccessPoint('ap2', ip='10.0.0.21/24', ssid='new-ssid', mode='g', channel='1',position='85,175,0')
-    #ap3 = net.addAccessPoint('ap3', ip='10.0.0.22/24', ssid='new-ssid', mode='g', channel='1',position='175,70,0')
-    
-    #sta1 = net.addStation('sta1', mac='00:00:00:00:00:10', ip='10.0.0.30/24')
-    #sta2 = net.addStation('sta2', mac='00:00:00:00:00:20', ip='10.0.0.31/24')
-    #sta3 = net.addStation('sta3', mac='00:00:00:00:00:30', ip='10.0.0.32/24')
-    #sta4 = net.addStation('sta4', mac='00:00:00:00:00:40', ip='10.0.0.33/24')
+    sta1 = net.addStation('sta1', mac='00:00:00:00:00:10', ip='10.0.0.31/24')
+    sta2 = net.addStation('sta2', mac='00:00:00:00:00:20', ip='10.0.0.32/24')
+    sta3 = net.addStation('sta3', mac='00:00:00:00:00:30', ip='10.0.0.33/24')
+    sta4 = net.addStation('sta4', mac='00:00:00:00:00:40', ip='10.0.0.34/24')
 
     #c1 = net.addController('c1')
     #c2 = net.addController('c2')
     #c3 = net.addController('c3')
 
     info("*** Configura o modelo de propagação \n")
-    #net.setPropagationModel(model="logDistance", exp=4.3)
+    net.setPropagationModel(model="logDistance", exp=4.3)
 
     info("*** Configura os nós Wifi \n")
-    #net.configureWifiNodes()
-
-    info("*** Associa e cria os links \n")
-
-    #         h2
-    #         |
-    # h1 --- r1 --- r3
-    #         |      
-    #         h4     
-
-    net.addLink(r1, h1, intfName1='r1-eth1', cls=TCLink)
-    net.addLink(r1, h2, intfName1='r1-eth2', cls=TCLink)
-    net.addLink(r1, h3, intfName1='r1-eth3', cls=TCLink)
-    net.addLink(r1, h4, intfName1='r1-eth4', cls=TCLink)
+    net.configureWifiNodes()
 
     info( '*** Estabelecendo Rotas \n')
     #r1.cmd("route add default gw 10.0.2.2")
