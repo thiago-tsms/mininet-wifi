@@ -65,6 +65,12 @@ def start_teste(args):
 
     info("*** Configura os nós Wifi \n")
     net.configureWifiNodes()
+    
+    c1 = net.addController('c1')
+    ap1.start([c1])
+    ap2.start([c1])
+    ap3.start([c1])
+    ap4.start([c1])
 
     info( '*** Estabelecendo Rotas \n')
     #r1.cmd("route add default gw 10.0.2.2")
@@ -93,9 +99,9 @@ def start_teste(args):
     info("*** Inicia Rede \n")
     net.build()
 
-    info( '*** Iniciando Controladores \n')
-    for controller in net.controllers:
-        controller.start()
+#     info( '*** Iniciando Controladores \n')
+#     for controller in net.controllers:
+#         controller.start()
 
     info( '*** Configurando Roteador \n')
     #sysctl - configura parâmetro de kernel em tempo de execução, a configuração é volátil
