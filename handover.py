@@ -1,13 +1,3 @@
-
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@athuscavalini
-intrig-unicamp /
-EA080-2S2021
-Public
 from mininet.node import Controller
 from mininet.log import setLogLevel, info
 from mn_wifi.cli import CLI
