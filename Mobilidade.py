@@ -25,13 +25,13 @@ def start_teste(args):
     sw4 = net.addSwitch('sw4', ip='10.0.0.14/24')
     sw5 = net.addSwitch('sw5', ip='10.0.0.15/24')
     
-    net.addLink(sw1, sw5)
-    net.addLink(sw2, sw5)
-    net.addLink(sw3, sw5)
-    net.addLink(sw4, sw5)
+    net.addLink('sw1', 'sw5')
+    net.addLink('sw2', 'sw5')
+    net.addLink('sw3', 'sw5')
+    net.addLink('sw4', 'sw5')
     
-    net.addLink(sw1, sw2)
-    net.addLink(sw3, sw4)
+    net.addLink('sw1', 'sw2')
+    net.addLink('sw3', 'sw4')
     
     # sw3----------sw4
     #         |
@@ -45,10 +45,10 @@ def start_teste(args):
     ap3 = net.addAccessPoint('ap3', ip='10.0.0.23/24', ssid='ssid-ap3', mode='g', channel='1', position='175,70,0')
     ap4 = net.addAccessPoint('ap3', ip='10.0.0.24/24', ssid='ssid-ap4', mode='g', channel='1', position='175,70,0')
     
-    net.addLink(ap1, sw1, intfName1='ap1-sw1', cls=TCLink)
-    net.addLink(ap2, sw2, intfName1='ap2-sw2', cls=TCLink)
-    net.addLink(ap3, sw3, intfName1='ap3-sw3', cls=TCLink)
-    net.addLink(ap4, sw4, intfName1='ap4-sw4', cls=TCLink)
+    net.addLink('ap1', 'sw1', intfName1='ap1-sw1', cls=TCLink)
+    net.addLink('ap2', 'sw2', intfName1='ap2-sw2', cls=TCLink)
+    net.addLink('ap3', 'sw3', intfName1='ap3-sw3', cls=TCLink)
+    net.addLink('ap4', 'sw4', intfName1='ap4-sw4', cls=TCLink)
     
     info("*** Criando Stations \n")
     sta1 = net.addStation('sta1', mac='00:00:00:00:00:10', ip='10.0.0.31/24')
