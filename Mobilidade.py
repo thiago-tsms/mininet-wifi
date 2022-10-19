@@ -43,7 +43,7 @@ def start_teste(args):
     ap1 = net.addAccessPoint('ap1', ip='10.0.0.21/24', ssid='ssid-ap1', mode='g', channel='1', position='50,50,0')
     ap2 = net.addAccessPoint('ap2', ip='10.0.0.22/24', ssid='ssid-ap2', mode='g', channel='1', position='85,175,0')
     ap3 = net.addAccessPoint('ap3', ip='10.0.0.23/24', ssid='ssid-ap3', mode='g', channel='1', position='175,70,0')
-    ap4 = net.addAccessPoint('ap3', ip='10.0.0.24/24', ssid='ssid-ap4', mode='g', channel='1', position='175,70,0')
+    ap4 = net.addAccessPoint('ap4', ip='10.0.0.24/24', ssid='ssid-ap4', mode='g', channel='1', position='175,70,0')
     
     net.addLink('ap1', 'sw1', intfName1='ap1-sw1', cls=TCLink)
     net.addLink('ap2', 'sw2', intfName1='ap2-sw2', cls=TCLink)
