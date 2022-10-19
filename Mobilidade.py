@@ -25,13 +25,13 @@ def start_teste(args):
     sw4 = net.addSwitch('sw4', ip='10.0.0.14/24')
     sw5 = net.addSwitch('sw5', ip='10.0.0.15/24')
     
-    net.addLink(sw1, sw5, intfName1='sw1-sw5', cls=TCLink)
-    net.addLink(sw2, sw5, intfName1='sw2-sw5', cls=TCLink)
-    net.addLink(sw3, sw5, intfName1='sw3-sw5', cls=TCLink)
-    net.addLink(sw4, sw5, intfName1='sw4-sw5', cls=TCLink)
+    net.addLink(sw1, sw5)
+    net.addLink(sw2, sw5)
+    net.addLink(sw3, sw5)
+    net.addLink(sw4, sw5)
     
-    net.addLink(sw1, sw2, intfName1='sw1-sw2', cls=TCLink)
-    net.addLink(sw3, sw4, intfName1='sw3-sw4', cls=TCLink)
+    net.addLink(sw1, sw2)
+    net.addLink(sw3, sw4)
     
     # sw3----------sw4
     #         |
