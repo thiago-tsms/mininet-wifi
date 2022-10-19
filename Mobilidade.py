@@ -51,10 +51,10 @@ def start_teste(args):
     net.addLink('ap4', 'sw4', intfName1='ap4-sw4', cls=TCLink)
     
     info("*** Criando Stations \n")
-    sta1 = net.addStation('sta1', mac='00:00:00:00:00:10', ip='10.0.0.31/24')
-    sta2 = net.addStation('sta2', mac='00:00:00:00:00:20', ip='10.0.0.32/24')
-    sta3 = net.addStation('sta3', mac='00:00:00:00:00:30', ip='10.0.0.33/24')
-    sta4 = net.addStation('sta4', mac='00:00:00:00:00:40', ip='10.0.0.34/24')
+    sta1 = net.addStation('sta1', mac='00:00:00:00:00:10', ip='10.0.0.31/24', position='50,50,0')
+    sta2 = net.addStation('sta2', mac='00:00:00:00:00:20', ip='10.0.0.32/24', position='85,175,0')
+    sta3 = net.addStation('sta3', mac='00:00:00:00:00:30', ip='10.0.0.33/24', position='175,70,0')
+    sta4 = net.addStation('sta4', mac='00:00:00:00:00:40', ip='10.0.0.34/24', position='175,70,0')
 
     #c1 = net.addController('c1')
     #c2 = net.addController('c2')
@@ -67,6 +67,7 @@ def start_teste(args):
     net.configureWifiNodes()
     
     c1 = net.addController('c1')
+    ca.start()
     ap1.start([c1])
     ap2.start([c1])
     ap3.start([c1])
@@ -91,7 +92,7 @@ def start_teste(args):
     #net.addLink(sta3, ap3)
 
     info("*** Plotting Graph\n")
-    #net.plotGraph(max_x=300, max_y=300)
+    net.plotGraph(max_x=300, max_y=300)
 
     # seed -> semente
     #net.setMobilityModel(time=0, model='RandomDirection',max_x=200, max_y=200, seed=20)
