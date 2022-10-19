@@ -16,7 +16,7 @@ def start_teste(args):
     # fading_cof=3
     # controller= Cotroller
     # switch = UserAP -> suporta meter tables (OpenFlow)
-    net = Mininet_wifi(topo=None)
+    net = Mininet_wifi(controller=Controller)
     
     info("*** Criando switches \n")
     sw1 = net.addSwitch('sw1', ip='10.0.0.11/24')
