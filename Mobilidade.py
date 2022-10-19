@@ -99,21 +99,21 @@ def start_teste(args):
 
     info( '*** Configurando Roteador \n')
     #sysctl - configura parâmetro de kernel em tempo de execução, a configuração é volátil
-    r1.cmd('sysctl -w net.ipv4.ip_forward=1')
+    #r1.cmd('sysctl -w net.ipv4.ip_forward=1')
 
-    info( '*** Atribuindo IP para as interfaces de rede \n')
-    #ifconfig - configura interface de rede
-    r1.cmd("ifconfig r1-eth1 10.0.1.1/24")
-    r1.cmd("ifconfig r1-eth2 10.0.2.1/24")
-    r1.cmd("ifconfig r1-eth3 10.0.3.1/24")
-    r1.cmd("ifconfig r1-eth4 10.0.4.1/24")
+#     info( '*** Atribuindo IP para as interfaces de rede \n')
+#     #ifconfig - configura interface de rede
+#     r1.cmd("ifconfig r1-eth1 10.0.1.1/24")
+#     r1.cmd("ifconfig r1-eth2 10.0.2.1/24")
+#     r1.cmd("ifconfig r1-eth3 10.0.3.1/24")
+#     r1.cmd("ifconfig r1-eth4 10.0.4.1/24")
 
-    info( '*** Estabelecendo Rotas \n')
-    #route - exibe ou modifica a tabela de roteamento IP
-    h1.cmd("route add default gw 10.0.1.1")
-    h2.cmd("route add default gw 10.0.2.1")
-    h3.cmd("route add default gw 10.0.3.1")
-    h4.cmd("route add default gw 10.0.4.1")
+#     info( '*** Estabelecendo Rotas \n')
+#     #route - exibe ou modifica a tabela de roteamento IP
+#     h1.cmd("route add default gw 10.0.1.1")
+#     h2.cmd("route add default gw 10.0.2.1")
+#     h3.cmd("route add default gw 10.0.3.1")
+#     h4.cmd("route add default gw 10.0.4.1")
 
     info("*** Rodando CLI \n")
     CLI(net)
