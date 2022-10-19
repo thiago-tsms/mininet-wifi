@@ -67,7 +67,7 @@ def start_teste(args):
     net.configureWifiNodes()
     
     c1 = net.addController('c1')
-    ca.start()
+    c1.start()
     ap1.start([c1])
     ap2.start([c1])
     ap3.start([c1])
