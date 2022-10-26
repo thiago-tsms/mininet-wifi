@@ -49,10 +49,6 @@ def start_teste(args):
     net.addLink(sw3, sw5)
     net.addLink(sw4, sw5)
 
-    # Causando erro ***
-    #net.addLink(sw3, sw2)
-    #net.addLink(sw1, sw4)
-
     info("*** Plotting Graph\n")
     net.plotGraph(max_x=300, max_y=300)
      
