@@ -1,12 +1,53 @@
 import sys
+import re
+import socket
 
-from turtle import position
 from mininet.node import Controller
 from mininet.log import setLogLevel, info
 from mn_wifi.link import wmediumd
 from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
 from mn_wifi.wmediumdConnector import interference
+from json import dumps
+from requests import put
+from mininet.util import quietRun
+from os import listdir, environ
+from fcntl import ioctl
+from array import array
+from struct import pack, unpack
+
+def getIfInfo(dst):
+    is_64bits = sys.maxsize > 2**32
+    struct_size = 40 if is_64bits else 32
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    max_possible = 8 # initial value
+    while True:
+      bytes = max_possible * struct_size
+      names = array('B')
+      for i in range(0, bytes):
+        names.append(0)
+      outbytes = unpack('iL', ioctl(
+        s.fileno(),
+        0x8912,  # SIOCGIFCONF
+        pack('iL', bytes, names.buffer_info()[0])
+      ))[0]
+      if outbytes == bytes:
+        max_possible *= 2
+      else:
+        break
+    s.connect((dst, 0))
+    ip = s.getsockname()[0]
+    for i in range(0, outbytes, struct_size):
+      addr = socket.inet_ntoa(names[i+20:i+24])
+      if addr == ip:
+        name = names[i:i+16]
+        try:
+          name = name.tobytes().decode('utf-8')
+        except AttributeError:
+          name = name.tostring()
+        name = name.split('\0', 1)[0]
+        return (name,addr)
+
 
 def start_teste(args):
 
@@ -27,12 +68,12 @@ def start_teste(args):
     ap4 = net.addAccessPoint('ap4', failMode='standalone', ssid='ssid-ap4', mode='g', channel='1', position='50,200,0')
 
     info("*** Criando Stations \n")
-    sta1 = net.addStation('sta1', ip='10.0.0.31/24', position='55,55,0')
-    sta2 = net.addStation('sta2', ip='10.0.0.32/24', position='245,55,0')
-    sta3 = net.addStation('sta3', ip='10.0.0.33/24', position='245,195,0')
-    sta4 = net.addStation('sta4', ip='10.0.0.34/24', position='55,205,0')
+    sta1 = net.addStation('sta1', ip='10.0.0.31/24', position='70,70,0')
+    sta2 = net.addStation('sta2', ip='10.0.0.32/24', position='230,70,0')
+    sta3 = net.addStation('sta3', ip='10.0.0.33/24', position='230,180,0')
+    sta4 = net.addStation('sta4', ip='10.0.0.34/24', position='70,180,0')
 
-    info("*** Configura o modelo de propagação \n")
+    info("*** Configurando o Modelo de Propagação \n")
     net.setPropagationModel(model="logDistance", exp=4.3)
 
     info("*** Configura os nós Wifi \n")
@@ -49,13 +90,14 @@ def start_teste(args):
     net.addLink(sw3, sw5)
     net.addLink(sw4, sw5)
 
-    info("*** Plotting Graph\n")
-    net.plotGraph(max_x=300, max_y=300)
+    info("*** Plotando Gráfico \n")
+    if '-p' in args:
+        net.plotGraph(max_x=300, max_y=300)
      
     info("*** Inicia Rede \n")
     net.build()
 
-    info("*** Faz conexões \n")
+    info("*** Iniciando Rede \n")
     ap1.start([])
     ap2.start([])
     ap3.start([])
@@ -66,6 +108,80 @@ def start_teste(args):
     sw3.start([])
     sw4.start([])
     sw5.start([])
+
+    #monitoramento
+    if '-m' in args:
+        info("*** Criando Interfaces de Monitoramento \n")
+        # Original (iw está relacionado com wireles nao deveri ser)
+        #sw1.cmd('iw dev %s-eth1 interface add %s-mon0 type monitor' % (sw1.name, sw1.name))
+        #sw2.cmd('iw dev %s-eth1 interface add %s-mon0 type monitor' % (sw2.name, sw2.name))
+        #sw3.cmd('iw dev %s-eth1 interface add %s-mon0 type monitor' % (sw3.name, sw3.name))
+        #sw4.cmd('iw dev %s-eth1 interface add %s-mon0 type monitor' % (sw4.name, sw4.name))
+
+        # Teste (não achei scan na documentação com há no iw)
+        sw1.cmd('ifconfig %s-eth1 interface add %s-mon0 type monitor' % (sw1.name, sw1.name))
+        sw2.cmd('ifconfig %s-eth1 interface add %s-mon0 type monitor' % (sw2.name, sw2.name))
+        sw3.cmd('ifconfig %s-eth1 interface add %s-mon0 type monitor' % (sw3.name, sw3.name))
+        sw4.cmd('ifconfig %s-eth1 interface add %s-mon0 type monitor' % (sw4.name, sw4.name))
+            
+        sw1.cmd('ifconfig %s-mon0 up' % sw1.name)
+        sw2.cmd('ifconfig %s-mon0 up' % sw2.name)
+        sw3.cmd('ifconfig %s-mon0 up' % sw3.name)
+        sw4.cmd('ifconfig %s-mon0 up' % sw4.name)
+
+        info("*** Configurando sFlow-RT \n")
+        collector = environ.get('COLLECTOR','127.0.0.1')
+        (ifname, agent) = getIfInfo(collector)
+        sampling = environ.get('SAMPLING','10')
+        polling = environ.get('POLLING','10')
+        sflow = 'ovs-vsctl -- --id=@sflow create sflow agent=%s target=%s sampling=%s polling=%s --' % (ifname,collector,sampling,polling)
+
+        info("*** Configurando sFlow-RT at APs \n")
+        '''for ap in net.aps:
+            sflow += ' -- set bridge %s sflow=@sflow' % ap
+            info(' '.join([ap.name for ap in net.aps]) + "\n")
+            quietRun(sflow)'''
+
+        info("*** Configurando sFlow-RT at Switches \n")
+        for s in net.switches:
+            sflow += ' -- set bridge %s sflow=@sflow' % s
+            info(' '.join([s.name for s in net.switches]) + "\n")
+            quietRun(sflow)
+
+        info("*** Enviando topology \n")
+        topo = {'nodes':{}, 'links':{}}
+        '''for ap in net.aps:
+            topo['nodes'][ap.name] = {'agent':agent, 'ports':{}}'''
+
+        for s in net.switches:
+            topo['nodes'][s.name] = {'agent':agent, 'ports':{}}
+        path = '/sys/devices/virtual/mac80211_hwsim/'
+        for child in listdir(path):
+            dir_ = '/sys/devices/virtual/mac80211_hwsim/'+'%s' % child+'/net/'
+            for child_ in listdir(dir_):
+                node = child_[:3]
+                if node in topo['nodes']:
+                    ifindex = open(dir_+child_+'/ifindex').read().split('\n',1)[0]
+                    topo['nodes'][node]['ports'][child_] = {'ifindex': ifindex}
+
+        path = '/sys/devices/virtual/net/'
+        for child in listdir(path):
+            parts = re.match('(^.+)-(.+)', child)
+            if parts is None: continue
+            if parts.group(1) in topo['nodes']:
+                ifindex = open(path+child+'/ifindex').read().split('\n',1)[0]
+                topo['nodes'][parts.group(1)]['ports'][child] = {'ifindex': ifindex}
+
+        linkName = '%s-%s' % (sw1.name, sw5.name)
+        topo['links'][linkName] = {'node1': sw1.name, 'port1': 'sw1-eth2', 'node2': sw5.name,   'port2': 'sw5-eth1'}
+        linkName = '%s-%s' % (sw2.name, sw5.name)
+        topo['links'][linkName] = {'node1': sw2.name, 'port1': 'sw2-eth2', 'node2': sw5.name,   'port2': 'sw5-eth2'}
+        linkName = '%s-%s' % (sw3.name, sw5.name)
+        topo['links'][linkName] = {'node1': sw3.name, 'port1': 'sw3-eth2', 'node2': sw5.name,   'port2': 'sw5-eth3'}
+        linkName = '%s-%s' % (sw3.name, sw5.name)
+        topo['links'][linkName] = {'node1': sw4.name, 'port1': 'sw4-eth2', 'node2': sw5.name,   'port2': 'sw5-eth4'}
+
+        put('http://127.0.0.1:8008/topology/json', data=dumps(topo))
 
     info("*** Rodando CLI \n")
     CLI(net)
