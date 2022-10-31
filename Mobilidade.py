@@ -178,7 +178,7 @@ def start_teste(args):
         topo['links'][linkName] = {'node1': sw2.name, 'port1': 'sw2-eth2', 'node2': sw5.name,   'port2': 'sw5-eth2'}
         linkName = '%s-%s' % (sw3.name, sw5.name)
         topo['links'][linkName] = {'node1': sw3.name, 'port1': 'sw3-eth2', 'node2': sw5.name,   'port2': 'sw5-eth3'}
-        linkName = '%s-%s' % (sw3.name, sw5.name)
+        linkName = '%s-%s' % (sw4.name, sw5.name)
         topo['links'][linkName] = {'node1': sw4.name, 'port1': 'sw4-eth2', 'node2': sw5.name,   'port2': 'sw5-eth4'}
 
         put('http://127.0.0.1:8008/topology/json', data=dumps(topo))
