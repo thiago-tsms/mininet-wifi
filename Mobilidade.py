@@ -118,12 +118,6 @@ def start_teste(args):
         polling = environ.get('POLLING','10')
         sflow = 'ovs-vsctl -- --id=@sflow create sflow agent=%s target=%s sampling=%s polling=%s --' % (ifname,collector,sampling,polling)
 
-        info("*** Configurando sFlow-RT at APs \n")
-        '''for ap in net.aps:
-            sflow += ' -- set bridge %s sflow=@sflow' % ap
-            info(' '.join([ap.name for ap in net.aps]) + "\n")
-            quietRun(sflow)'''
-
         info("*** Configurando sFlow-RT at Switches \n")
         for s in net.switches:
             sflow += ' -- set bridge %s sflow=@sflow' % s
