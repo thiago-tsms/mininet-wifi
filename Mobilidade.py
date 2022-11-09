@@ -111,36 +111,12 @@ def start_teste(args):
 
     #monitoramento
     if '-m' in args:
-        info("*** Criando Interfaces de Monitoramento \n")
-        # Original (iw está relacionado com wireles nao deveri ser)
-        #sw1.cmd('iw dev %s-eth2 interface add %s-mon0 type monitor' % (sw1.name, sw1.name))
-        #sw2.cmd('iw dev %s-eth2 interface add %s-mon0 type monitor' % (sw2.name, sw2.name))
-        #sw3.cmd('iw dev %s-eth2 interface add %s-mon0 type monitor' % (sw3.name, sw3.name))
-        #sw4.cmd('iw dev %s-eth2 interface add %s-mon0 type monitor' % (sw4.name, sw4.name))
-
-        # Teste (não achei scan na documentação com há no iw)
-        sw1.cmd('ifconfig %s-eth2 interface add %s-mon0 type monitor' % (sw1.name, sw1.name))
-        sw2.cmd('ifconfig %s-eth2 interface add %s-mon0 type monitor' % (sw2.name, sw2.name))
-        sw3.cmd('ifconfig %s-eth2 interface add %s-mon0 type monitor' % (sw3.name, sw3.name))
-        sw4.cmd('ifconfig %s-eth2 interface add %s-mon0 type monitor' % (sw4.name, sw4.name))
-            
-        sw1.cmd('ifconfig %s-mon0 up' % sw1.name)
-        sw2.cmd('ifconfig %s-mon0 up' % sw2.name)
-        sw3.cmd('ifconfig %s-mon0 up' % sw3.name)
-        sw4.cmd('ifconfig %s-mon0 up' % sw4.name)
-
         info("*** Configurando sFlow-RT \n")
         collector = environ.get('COLLECTOR','127.0.0.1')
         (ifname, agent) = getIfInfo(collector)
         sampling = environ.get('SAMPLING','10')
         polling = environ.get('POLLING','10')
         sflow = 'ovs-vsctl -- --id=@sflow create sflow agent=%s target=%s sampling=%s polling=%s --' % (ifname,collector,sampling,polling)
-
-        info("*** Configurando sFlow-RT at APs \n")
-        '''for ap in net.aps:
-            sflow += ' -- set bridge %s sflow=@sflow' % ap
-            info(' '.join([ap.name for ap in net.aps]) + "\n")
-            quietRun(sflow)'''
 
         info("*** Configurando sFlow-RT at Switches \n")
         for s in net.switches:
