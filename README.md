@@ -1,4 +1,4 @@
-#Como começar
+# Como começar
 Para rodar o sflow é necessário java installado
 sudo apt install default-jre
 
