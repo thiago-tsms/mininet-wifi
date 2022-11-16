@@ -90,22 +90,24 @@ def start_teste(args):
     net.addLink(sw3, sw5)
     net.addLink(sw4, sw5)
     
-    info("*** Configurando Mobilidade \n")
-    net.setMobilityModel(time=0, model='RandomDirection', min_x=70, max_x=230, min_y=70, max_y=230, seed=20, ac_method='ssf')
+    if '-mobility' in args:
+        info("*** Configurando Mobilidade \n")
+        net.setMobilityModel(time=0, model='RandomDirection', min_x=70, max_x=230, min_y=70, max_y=230, seed=20, ac_method='ssf')
 
     info("*** Plotando Gráfico \n")
     if '-p' in args:
         net.plotGraph(min_x=-10, min_y=-10, max_x=210, max_y=210)
         
-    sta1.coord = ['70.0,70.0,0.0']
-    sta2.coord = ['230.0,70.0,0.0']
-    sta3.coord = ['230.0,180.0,0.0']
-    sta4.coord = ['70.0,180.0,0.0']
-    
-    net.mobility(sta1, 'start', time=1)
-    net.mobility(sta2, 'start', time=1)
-    net.mobility(sta3, 'start', time=1)
-    net.mobility(sta4, 'start', time=1)
+    if '-mobility' in args:
+        sta1.coord = ['70.0,70.0,0.0']
+        sta2.coord = ['230.0,70.0,0.0']
+        sta3.coord = ['230.0,180.0,0.0']
+        sta4.coord = ['70.0,180.0,0.0']
+
+        net.mobility(sta1, 'start', time=1)
+        net.mobility(sta2, 'start', time=1)
+        net.mobility(sta3, 'start', time=1)
+        net.mobility(sta4, 'start', time=1)
      
     info("*** Inicia Rede \n")
     net.build()
