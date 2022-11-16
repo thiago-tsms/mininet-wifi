@@ -63,15 +63,15 @@ def start_teste(args):
 
     info("*** Criando Access Points \n")
     ap1 = net.addAccessPoint('ap1', failMode='standalone', ssid='ssid-ap1', mode='g', channel='1', position='50,50,0')
-    ap2 = net.addAccessPoint('ap2', failMode='standalone', ssid='ssid-ap2', mode='g', channel='1', position='250,50,0')
-    ap3 = net.addAccessPoint('ap3', failMode='standalone', ssid='ssid-ap3', mode='g', channel='1', position='250,200,0')
-    ap4 = net.addAccessPoint('ap4', failMode='standalone', ssid='ssid-ap4', mode='g', channel='1', position='50,200,0')
+    ap2 = net.addAccessPoint('ap2', failMode='standalone', ssid='ssid-ap2', mode='g', channel='1', position='150,50,0')
+    ap3 = net.addAccessPoint('ap3', failMode='standalone', ssid='ssid-ap3', mode='g', channel='1', position='150,150,0')
+    ap4 = net.addAccessPoint('ap4', failMode='standalone', ssid='ssid-ap4', mode='g', channel='1', position='50,150,0')
 
     info("*** Criando Stations \n")
-    sta1 = net.addStation('sta1', ip='10.0.0.31/24', position='70,70,0')
-    sta2 = net.addStation('sta2', ip='10.0.0.32/24', position='230,70,0')
-    sta3 = net.addStation('sta3', ip='10.0.0.33/24', position='230,180,0')
-    sta4 = net.addStation('sta4', ip='10.0.0.34/24', position='70,180,0')
+    sta1 = net.addStation('sta1', ip='10.0.0.31/24', position='70,70,0', min_x=20, min_y=20, max_x=180, max_y=180, range=20)
+    sta2 = net.addStation('sta2', ip='10.0.0.32/24', position='130,70,0', min_x=20, min_y=20, max_x=180, max_y=180, range=20)
+    sta3 = net.addStation('sta3', ip='10.0.0.33/24', position='130,130,0', min_x=20, min_y=20, max_x=180, max_y=180, range=20)
+    sta4 = net.addStation('sta4', ip='10.0.0.34/24', position='70,130,0', min_x=20, min_y=20, max_x=180, max_y=180, range=20)
 
     info("*** Configurando o Modelo de Propagação \n")
     net.setPropagationModel(model="logDistance", exp=4.3)
@@ -89,10 +89,23 @@ def start_teste(args):
     net.addLink(sw2, sw5)
     net.addLink(sw3, sw5)
     net.addLink(sw4, sw5)
+    
+    info("*** Configurando Mobilidade \n")
+    net.setMobilityModel(time=0, model='RandomDirection', min_x=70, max_x=230, min_y=70, max_y=230, seed=20, ac_method='ssf')
 
     info("*** Plotando Gráfico \n")
     if '-p' in args:
-        net.plotGraph(max_x=300, max_y=300)
+        net.plotGraph(min_x=-10, min_y=-10, max_x=210, max_y=210)
+        
+    sta1.coord = ['70.0,70.0,0.0']
+    sta2.coord = ['230.0,70.0,0.0']
+    sta3.coord = ['230.0,180.0,0.0']
+    sta4.coord = ['70.0,180.0,0.0']
+    
+    net.mobility(sta1, 'start', time=1)
+    net.mobility(sta2, 'start', time=1)
+    net.mobility(sta3, 'start', time=1)
+    net.mobility(sta4, 'start', time=1)
      
     info("*** Inicia Rede \n")
     net.build()
@@ -168,4 +181,3 @@ def start_teste(args):
 if __name__ == '__main__':
     setLogLevel('info')
     start_teste(sys.argv)
-    
