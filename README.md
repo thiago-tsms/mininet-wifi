@@ -20,8 +20,10 @@ Este trabalho tem como objetivo aplicar técnicas de aprendizado de máquinas pa
 ### Parte 1:
 - [x] Implementar a topologia da rede no mininet-wifi;
 - [x] Implementar a mobilidade dos dispositivos STA 1~4;
-- [x] Implementar a troca de pacotes entre os dispositivos STA, de maneira uniforme ou não, que represente a normalidade;
-- [x] Capturar os pacotes que trafegam nos switches SW 1~5 utilizando wireshark ou tcpdump;
+- [ ] Implementar a troca de pacotes entre os dispositivos STA, de maneira uniforme ou não, que represente a normalidade;
+  - [ ] Variar o tamanho dos pacotes mices e elephants (matriz de count está igual matriz de bytes);
+  - [ ] Melhorar a alaeatoriedade de escolha dos nós (matriz normal está desbalanceada); 
+- [ ] Capturar os pacotes que trafegam nos switches SW 1~5 utilizando wireshark ou tcpdump;
 - [ ] Gerar dataset de pacotes de normalidade com intervalos de tempo pré-definido;
 - [ ] Gerar dataset de pacotes de anormalidade;
 
