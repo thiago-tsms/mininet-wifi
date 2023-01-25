@@ -194,41 +194,18 @@ def generate_flows(n_elephant_flows, n_mice_flows, duration, net, log_dir):
     for i in range(n_mice_flows):
         flow_type.append('M')
     random.shuffle(flow_type)
-    
-    print("Setting random flow start times")
 
-    # setting random flow start times
+    print("Setting uniform flow start times")
     flow_start_time = []
     for i in range(n_total_flows):
-        n = random.randint(1, interval)
-        if i == 0:
-            flow_start_time.append(0)
-        else:
-            flow_start_time.append(flow_start_time[i - 1] + n)
+        flow_start_time.append(i * interval)
 
-    print("Setting random flow end times")
-    # setting random flow end times
-    # using normal distribution
-    # we will keep duration till 95% of the total duration
-    # the remaining 5% will be used as buffer to finish off the existing flows
+    print("Setting uniform flow end times")
     flow_end_time = []
     for i in range(n_total_flows):
-        s = flow_start_time[i]
-        #e = int(float(0.95) * float(duration))  # 95% of the duration
-        end_time = random.randint(s, duration)
-        #end_time = random_normal_number(s, e)
-        print(f'endtime = {end_time}')
-        #while end_time > e:
-        #    print(f'end = {end_time} e e = {e}')
-        #    end_time = random_normal_number(s, e)
-        #while end_time > e:
-        #    print(f'end = {end_time} e e = {e}')
-        #    end_time = random_normal_number(s, e)
-        flow_end_time.append(end_time)
+        flow_end_time.append((i + 1) * interval)
 
     print("calculating flow duration")
-	
-    # calculating flow duration from start time and end time generated above
     flow_duration = []
     for i in range(n_total_flows):
         flow_duration.append(flow_end_time[i] - flow_start_time[i])
