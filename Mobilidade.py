@@ -38,9 +38,9 @@ import numpy as np
 #
 
 mice_flow_min = 100  # KBytes = 100KB
-mice_flow_max = 10240  # KBytes = 10MB
-elephant_flow_min = 10240  # KBytes = 10MB
-elephant_flow_max = 1024*1024*10  # KBytes = 10 GB
+mice_flow_max = 10000  # KBytes = 10MB
+elephant_flow_min = 100000  # KBytes = 100MB
+elephant_flow_max = 10000000  # KBytes = 10 GB
 
 # FLOWS
 # n_mice_flows = 45
@@ -57,8 +57,7 @@ sampling_interval = '1'  # seconds
 
 
 # ELEPHANT FLOW PARAMS
-elephant_bandwidth_list = ['10M', '20M', '30M', '40M', '50M', '60M', '70M', '80M', '90M', '100M',
-                           '200M', '300M', '400M', '500M', '600M', '700M', '800M', '900M', '1000M']
+elephant_bandwidth_list = ['100M', '200M', '300M', '400M', '500M', '600M', '700M', '800M', '900M', '1000M']
 
 # MICE FLOW PARAMS
 mice_bandwidth_list = ['100K', '200K', '300K', '400K', '500K', '600K', '700K', '800K', '900K', '1000K',
