@@ -428,8 +428,14 @@ def start_teste(args):
     n_elephant_flows = int(input("No of elephant flows: "))
     n_mice_flows = int(input("No of mice flows: "))
 
+    # Inicia o log tcp dump
     coleta_tcpdum(net)
+    
+    # Gera e executa os flows
     generate_flows(n_elephant_flows, n_mice_flows, experiment_duration, net, log_dir)
+    
+    # Encerra o log tcpdump
+    net.get('sw5').cmdPrint('killall tcpdump')
 
     info("*** Rodando CLI \n")
     CLI(net)
