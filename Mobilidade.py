@@ -64,6 +64,16 @@ elephant_bandwidth_list = ['10M', '20M', '30M', '40M', '50M', '60M', '70M', '80M
 mice_bandwidth_list = ['100K', '200K', '300K', '400K', '500K', '600K', '700K', '800K', '900K', '1000K',
                        '2000K', '3000K', '4000K', '5000K', '6000K', '7000K', '8000K', '9000K', '10000K', '1000K']
 
+def coleta_tcpdum(net):
+    """
+        Coleta os dados e salva usando tcpdump (.pcap)
+    """
+    sw5 = net.get('sw5')
+    sw5.cmdPrint('tcpdump -i sw5-eth1 -w sw5-eth1.pcap &')
+    sw5.cmdPrint('tcpdump -i sw5-eth2 -w sw5-eth2.pcap &')
+    sw5.cmdPrint('tcpdump -i sw5-eth3 -w sw5-eth3.pcap &')
+    sw5.cmdPrint('tcpdump -i sw5-eth4 -w sw5-eth4.pcap &')
+
 
 def random_normal_number(low, high):
     range = high - low
@@ -418,6 +428,7 @@ def start_teste(args):
     n_elephant_flows = int(input("No of elephant flows: "))
     n_mice_flows = int(input("No of mice flows: "))
 
+    coleta_tcpdum(net)
     generate_flows(n_elephant_flows, n_mice_flows, experiment_duration, net, log_dir)
 
     info("*** Rodando CLI \n")
