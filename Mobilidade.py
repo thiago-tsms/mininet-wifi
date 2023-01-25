@@ -72,6 +72,7 @@ def coleta_tcpdum(net):
     sw5.cmdPrint('tcpdump -i sw5-eth2 -w sw5-eth2.pcap &')
     sw5.cmdPrint('tcpdump -i sw5-eth3 -w sw5-eth3.pcap &')
     sw5.cmdPrint('tcpdump -i sw5-eth4 -w sw5-eth4.pcap &')
+    sw5.cmdPrint('tcpdump -i any -w sw5-any.pcap &')
 
 
 def random_normal_number(low, high):
