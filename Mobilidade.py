@@ -300,10 +300,10 @@ def start_teste(args):
     ap4 = net.addAccessPoint('ap4', failMode='standalone', ssid='ssid-ap4', mode='g', channel='1', position='50,150,0')
 
     info("*** Criando Stations \n")
-    sta1 = net.addStation('sta1', ip='10.0.0.31/24', position='70,70,0', min_x=20, min_y=20, max_x=180, max_y=180, range=30)
-    sta2 = net.addStation('sta2', ip='10.0.0.32/24', position='130,70,0', min_x=20, min_y=20, max_x=180, max_y=180, range=30)
-    sta3 = net.addStation('sta3', ip='10.0.0.33/24', position='130,130,0', min_x=20, min_y=20, max_x=180, max_y=180, range=30)
-    sta4 = net.addStation('sta4', ip='10.0.0.34/24', position='70,130,0', min_x=20, min_y=20, max_x=180, max_y=180, range=30)
+    sta1 = net.addStation('sta1', ip='10.0.0.31/24', position='60,60,0', min_x=20, min_y=20, max_x=180, max_y=180, range=20)
+    sta2 = net.addStation('sta2', ip='10.0.0.32/24', position='140,60,0', min_x=20, min_y=20, max_x=180, max_y=180, range=20)
+    sta3 = net.addStation('sta3', ip='10.0.0.33/24', position='140,140,0', min_x=20, min_y=20, max_x=180, max_y=180, range=20)
+    sta4 = net.addStation('sta4', ip='10.0.0.34/24', position='60,140,0', min_x=20, min_y=20, max_x=180, max_y=180, range=20)
 
     info("*** Configurando o Modelo de Propagação \n")
     net.setPropagationModel(model="logDistance", exp=4.3)
