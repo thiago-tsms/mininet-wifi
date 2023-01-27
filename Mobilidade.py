@@ -141,7 +141,7 @@ def generate_mice_hping(t, net):
     src = net.get(str(end_points[0]))
     dst = net.get(str(end_points[1]))
     d = random.choice(mice_data_size)
-    client_cmd = f"hping3 {dst.IP()} -d {d} -c {t} &"
+    client_cmd = f"hping3 {dst.IP()} -d {d} -c {t} -q &"
     src.cmdPrint(client_cmd)
 
     
@@ -151,7 +151,7 @@ def generate_flood_hping(t, net):
     src = net.get(str(end_points[0]))
     dst = net.get(str(end_points[1]))
     d = random.choice(elephant_data_size)
-    client_cmd = f"hping3 {dst.IP()} -d {d} -c {t*8} --fast &"
+    client_cmd = f"hping3 {dst.IP()} -d {d} -c {t*8} --fast -q &"
     src.cmdPrint(client_cmd)
     
     
@@ -300,16 +300,22 @@ def generate_flows(n_elephant_flows, n_mice_flows, duration, net, log_dir):
     print("Remaining duration :" + str(duration - flow_end_time[-1]))
 
     # generating the flows
+    tempos = []
+    tempo_inicial = time.time()
     for i in range(n_total_flows):
         if i == 0:
             time.sleep(flow_start_time[i])
         else:
             time.sleep(flow_start_time[i] - flow_start_time[i-1])
         if flow_type[i] == 'E':
+            tempos.append(time.time()-tempo_inicial)
             print(f"ELEPHANT FLOW STARTED ON {flow_start_time[i]} BY {flow_duration[i]} SECONDS.")
             generate_elephant_flows(i, flow_duration[i], net, log_dir)
         elif flow_type[i] == 'M':
             generate_mice_flows(i, flow_duration[i], net, log_dir)
+        
+    print("ELEPHANT FLOWS START TIME:")
+    print(tempos)
 
     # sleeping for the remaining duration of the experiment
     remaining_duration = duration - flow_start_time[-1]
