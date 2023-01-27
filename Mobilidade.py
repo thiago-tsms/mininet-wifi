@@ -410,14 +410,14 @@ def start_teste(args):
 
         put('http://127.0.0.1:8008/topology/json', data=dumps(topo))
     
+    # Inicia o log tcp dump
+    coleta_tcpdum(net)
+      
     if '-f' in args:
       log_dir = "./test"    
       experiment_duration = int(input("Experiment duration: "))
       n_elephant_flows = int(input("No of elephant flows: "))
       n_mice_flows = int(input("No of mice flows: "))
-
-      # Inicia o log tcp dump
-      coleta_tcpdum(net)
     
       # Gera e executa os flows
       generate_flows(n_elephant_flows, n_mice_flows, experiment_duration, net, log_dir)
