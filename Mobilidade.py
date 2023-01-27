@@ -140,7 +140,7 @@ def generate_mice_hping(t, net):
     end_points = random.sample(hosts, 2)
     src = net.get(str(end_points[0]))
     dst = net.get(str(end_points[1]))
-    d = random.choice(mice_data_size)
+    d = random.randint(100, 10000)
     client_cmd = f"hping3 {dst.IP()} -d {d} -c {t} -q &"
     src.cmdPrint(client_cmd)
 
@@ -150,7 +150,7 @@ def generate_flood_hping(t, net):
     end_points = random.sample(hosts, 2)
     src = net.get(str(end_points[0]))
     dst = net.get(str(end_points[1]))
-    d = random.choice(elephant_data_size)
+    d = random.randint(10000, 65000)
     client_cmd = f"hping3 {dst.IP()} -d {d} -c {t*8} --fast -q &"
     src.cmdPrint(client_cmd)
     
