@@ -56,6 +56,8 @@ port_max = 65536
 # IPERF SETTINGS
 sampling_interval = '1'  # seconds
 
+# Bytes Size
+bytes_size = [10**6, 10**5, 10**4, 10**3, 10**2]
 
 # ELEPHANT FLOW PARAMS
 elephant_bandwidth_list = ['1G', '2G', '3G', '4G', '5G', '6G', '7G', '8G', '9G', '10G']
@@ -137,7 +139,8 @@ def generate_mice_hping(t, net):
     end_points = random.sample(hosts, 2)
     src = net.get(str(end_points[0]))
     dst = net.get(str(end_points[1]))
-    client_cmd = f"hping3 {dst.IP()} -d 100000 -c {t} &"
+    d = random.choice(bytes_size)
+    client_cmd = f"hping3 {dst.IP()} -d {d} -c {t} &"
     src.cmdPrint(client_cmd)
 
     
@@ -146,7 +149,8 @@ def generate_flood_hping(t, net):
     end_points = random.sample(hosts, 2)
     src = net.get(str(end_points[0]))
     dst = net.get(str(end_points[1]))
-    client_cmd = f"hping3 {dst.IP()} -d 100000 -c {t*10} --fast &"
+    d = random.choice(bytes_size)
+    client_cmd = f"hping3 {dst.IP()} -d {d} -c {t*10} --fast &"
     src.cmdPrint(client_cmd)
     
     
