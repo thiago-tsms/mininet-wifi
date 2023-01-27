@@ -241,7 +241,7 @@ def generate_pings(n_elephant_flows, n_mice_flows, duration, net):
         else:
             time.sleep(flow_start_time[i] - flow_start_time[i-1])
         if flow_type[i] == 'E':
-            generate_elephant_hping(flow_duration[i], net)
+            generate_flood_hping(flow_duration[i], net)
         elif flow_type[i] == 'M':
             generate_mice_hping(flow_duration[i], net)
 
