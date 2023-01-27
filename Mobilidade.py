@@ -491,18 +491,17 @@ def start_teste(args):
         topo['links'][linkName] = {'node1': sw4.name, 'port1': 'sw4-eth2', 'node2': sw5.name,   'port2': 'sw5-eth4'}
 
         put('http://127.0.0.1:8008/topology/json', data=dumps(topo))
-    
-    # Inicia o log tcp dump
-    coleta_tcpdum(net)
       
     if '-f' in args:
       log_dir = "./test"    
       experiment_duration = int(input("Experiment duration: "))
       n_elephant_flows = int(input("No of elephant flows: "))
       n_mice_flows = int(input("No of mice flows: "))
+      
+      # Inicia o log tcp dump
+      coleta_tcpdum(net)
     
       # Gera e executa os flows
-      #generate_flows(n_elephant_flows, n_mice_flows, experiment_duration, net, log_dir)
       generate_pings(n_elephant_flows, n_mice_flows, experiment_duration, net)
     
       # Encerra o log tcpdump
