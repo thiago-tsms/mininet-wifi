@@ -249,9 +249,12 @@ def generate_pings(n_elephant_flows, n_mice_flows, duration, net):
             time.sleep(flow_start_time[i] - flow_start_time[i-1])
         if flow_type[i] == 'E':
             tempos.append(time.time()-tempo_inicial)
+            for _ in range(random.randint(1, 6)):
+                generate_mice_hping(flow_duration[i], net)
             generate_flood_hping(flow_duration[i], net)
         elif flow_type[i] == 'M':
-            generate_mice_hping(flow_duration[i], net)
+            for _ in range(random.randint(1, 6)):
+                generate_mice_hping(flow_duration[i], net)
             
     print("ELEPHANT FLOWS START TIME:")
     print(tempos)
