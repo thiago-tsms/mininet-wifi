@@ -48,7 +48,8 @@ elephant_flow_max = 10000000  # KBytes = 10 GB
 # n_iot_flows = 0
 
 # L4 PROTOCOLS
-protocol_list = ['--udp']  # udp / tcp
+# protocol_list = ['--udp', '']  # udp / tcp
+protocol_list = ['']  # udp / tcp
 port_min = 1025
 port_max = 65536
 
