@@ -48,7 +48,7 @@ elephant_flow_max = 10000000  # KBytes = 10 GB
 # n_iot_flows = 0
 
 # L4 PROTOCOLS
-protocol_list = ['--udp', '']  # udp / tcp
+protocol_list = ['--udp']  # udp / tcp
 port_min = 1025
 port_max = 65536
 
@@ -126,6 +126,7 @@ def generate_elephant_flows(id, duration, net, log_dir):
     client_cmd += " & "
 
     # send the cmd
+    print(f"COMANDO ENVIADO:\n{server_cmd}\n")
     dst.cmdPrint(server_cmd)
     src.cmdPrint(client_cmd)
 
@@ -228,6 +229,7 @@ def generate_flows(n_elephant_flows, n_mice_flows, duration, net, log_dir):
         else:
             time.sleep(flow_start_time[i] - flow_start_time[i-1])
         if flow_type[i] == 'E':
+            print(f"ELEPHANT FLOW STARTED ON {flow_start_time[i]} BY {flow_duration[i]} SECONDS.")
             generate_elephant_flows(i, flow_duration[i], net, log_dir)
         elif flow_type[i] == 'M':
             generate_mice_flows(i, flow_duration[i], net, log_dir)
