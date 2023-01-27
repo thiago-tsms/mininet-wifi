@@ -301,13 +301,13 @@ def start_teste(args):
 
     info("*** Criando Stations \n")
     sta1 = net.addStation('sta1', ip='10.0.0.31/24', position='60,60,0', min_x=20, min_y=20, max_x=180, max_y=180, range=30, txpower=4)
-    sta1.setTxPower(4, intf='sta1-wlan0')
+    sta1.setTxPower(4)
     sta2 = net.addStation('sta2', ip='10.0.0.32/24', position='140,60,0', min_x=20, min_y=20, max_x=180, max_y=180, range=30, txpower=4)
-    sta2.setTxPower(4, intf='sta2-wlan0')
+    sta2.setTxPower(4)
     sta3 = net.addStation('sta3', ip='10.0.0.33/24', position='140,140,0', min_x=20, min_y=20, max_x=180, max_y=180, range=30, txpower=4)
-    sta3.setTxPower(4, intf='sta3-wlan0')
+    sta3.setTxPower(4)
     sta4 = net.addStation('sta4', ip='10.0.0.34/24', position='60,140,0', min_x=20, min_y=20, max_x=180, max_y=180, range=30, txpower=4)
-    sta4.setTxPower(4, intf='sta4-wlan0')
+    sta4.setTxPower(4)
 
     info("*** Configurando o Modelo de Propagação \n")
     net.setPropagationModel(model="logDistance", exp=4.3)
