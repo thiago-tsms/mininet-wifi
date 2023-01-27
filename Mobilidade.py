@@ -39,7 +39,7 @@ import numpy as np
 
 mice_flow_min = 100  # KBytes = 100KB
 mice_flow_max = 10000  # KBytes = 10MB
-elephant_flow_min = 100000  # KBytes = 100MB
+elephant_flow_min = 1000000  # KBytes = 1 GB
 elephant_flow_max = 10000000  # KBytes = 10 GB
 
 # FLOWS
@@ -57,11 +57,11 @@ sampling_interval = '1'  # seconds
 
 
 # ELEPHANT FLOW PARAMS
-elephant_bandwidth_list = ['100M', '200M', '300M', '400M', '500M', '600M', '700M', '800M', '900M', '1000M']
+elephant_bandwidth_list = ['1G', '2G', '3G', '4G', '5G', '6G', '7G', '8G', '9G', '10G']
 
 # MICE FLOW PARAMS
 mice_bandwidth_list = ['100K', '200K', '300K', '400K', '500K', '600K', '700K', '800K', '900K', '1000K',
-                       '2000K', '3000K', '4000K', '5000K', '6000K', '7000K', '8000K', '9000K', '10000K', '1000K']
+                       '2000K', '3000K', '4000K', '5000K', '6000K', '7000K', '8000K', '9000K', '10000K']
 
 def coleta_tcpdum(net):
     """
@@ -91,9 +91,6 @@ def generate_elephant_flows(id, duration, net, log_dir):
     """
 
     hosts = net.stations
-    #hosts = net.hosts
-    #print(net)
-    #print(f'hosts: {hosts}')
 
     # select random src and dst
     end_points = random.sample(hosts, 2)
@@ -141,8 +138,6 @@ def generate_mice_flows(id, duration, net, log_dir):
     """
 
     hosts = net.stations
-    #hosts = net.hosts
-    #print(f'hosts: {hosts}')
 
     # select random src and dst
     end_points = random.sample(hosts, 2)
@@ -224,7 +219,7 @@ def generate_flows(n_elephant_flows, n_mice_flows, duration, net, log_dir):
     print(flow_start_time)
     print(flow_end_time)
     print(flow_duration)
-    print("Remaining duration :" + str(duration - flow_start_time[-1]))
+    print("Remaining duration :" + str(duration - flow_end_time[-1]))
 
     # generating the flows
     for i in range(n_total_flows):
