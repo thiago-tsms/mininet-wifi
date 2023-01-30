@@ -47,9 +47,9 @@ def generate_mice_hping(t, net):
     end_points = random.sample(hosts, 2)
     src = net.get(str(end_points[0]))
     dst = net.get(str(end_points[1]))
-    d = random.randint(100, 10000)
-    p = random.randint(1025, 65536)
-    client_cmd = f"hping3 {dst.IP()} -d {d} -c {t} -q -p {p} --dontfrag &"
+    data_size = random.randint(20, 512)
+    port = random.randint(1025, 65536)
+    client_cmd = f"hping3 {dst.IP()} -d {data_size} -c {t} -q -p {port} --dontfrag &"
     src.cmdPrint(client_cmd)
 
     
@@ -58,9 +58,9 @@ def generate_flood_hping(t, net):
     end_points = random.sample(hosts, 2)
     src = net.get(str(end_points[0]))
     dst = net.get(str(end_points[1]))
-    d = random.randint(10000, 65000)
-    p = random.randint(1025, 65536)
-    client_cmd = f"hping3 {dst.IP()} -d {d} -c {t*8} --fast -q -p {p} --dontfrag &"
+    data_size = random.randint(512, 1512)
+    port = random.randint(1025, 65536)
+    client_cmd = f"hping3 {dst.IP()} -d {data_size} -c {t*8} --fast -q -p {port} --dontfrag &"
     src.cmdPrint(client_cmd)
 
     
