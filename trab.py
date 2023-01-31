@@ -49,7 +49,12 @@ def generate_mice_hping(t, net):
     dst = net.get(str(end_points[1]))
     data_size = random.randint(20, 512)
     port = random.randint(1025, 65536)
-    client_cmd = f"hping3 {dst.IP()} -d {data_size} -c {t} -q -p {port} --dontfrag &"
+    # Tempo entre 500 e 1000 ms
+    random.choice(500,1000)
+    tempo = random.choice([500,625,714,833,1000])
+    # Count:
+    count = int(t*(tempo/1000))
+    client_cmd = f"hping3 {dst.IP()} -d {data_size} -c {count} -q -p {port} -i {t} --dontfrag &"
     src.cmdPrint(client_cmd)
 
     
