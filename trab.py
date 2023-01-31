@@ -50,7 +50,6 @@ def generate_mice_hping(t, net):
     data_size = random.randint(20, 500)
     port = random.randint(1025, 65536)
     # Tempo entre 500 e 1000 ms
-    random.choice(500,1000)
     tempo = random.choice([500,625,714,833,1000])
     # Count:
     count = int(t*(tempo/1000))
