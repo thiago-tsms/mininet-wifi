@@ -53,7 +53,7 @@ def generate_mice_hping(t, net):
     tempo = random.choice([500,625,714,833,1000])
     # Count:
     count = int(t*(tempo/1000))
-    client_cmd = f"hping3 {dst.IP()} -d {data_size} -c {count} -q -p {port} -i {t} --dontfrag &"
+    client_cmd = f"hping3 {dst.IP()} -d {data_size} -c {count} -q -p {port} -i {tempo} --dontfrag &"
     src.cmdPrint(client_cmd)
 
     
