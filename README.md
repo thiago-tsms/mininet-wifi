@@ -19,14 +19,24 @@ O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma m
 
 # Desenvolvimento
 
-
-
-### Estrutura Probabilística usada:
+#### Estrutura Probabilística usada:
 - Tamanho do contador: 1000 posições;
 - Entrada do hash: IP de Origem, IP de Destino, Porta de Origem, Porta de Destino;
 - Função de Hash: MurmurHash3 32-bits + split em 1000;
-- Dado armazenado: Tamanho do pacote
-- Idade do contador: 5 segundos
+- Dado armazenado: Tamanho do pacote;
+- Idade do contador: 5 segundos.
+
+#### Métricas usadas:
+- média
+- mediana
+- índice do maior valor
+- maior valor
+- soma dos elementos
+- número de não-zeros
+- desvio padrão (σ)
+- n° de elementos 2x maiores que σ
+- n° de elementos 3x maiores que σ
+
 
 
 # Mininet Wifi
