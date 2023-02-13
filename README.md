@@ -1,4 +1,7 @@
-# Como começar
+# Sobre
+Simula uma troca de dados com diferentes fluxos
+
+## Como começar
 
 Requisitos:
   - Mininet Wifi
@@ -25,22 +28,3 @@ Parâmetros de entrada (-f)
 #### flood flow: são gerados com:
 - size: 500-1400
 - port: 1025-65536
-
-
-### Parte 1:
-- [x] Implementar a topologia da rede no mininet-wifi;
-- [x] Implementar a mobilidade dos dispositivos STA 1~4;
-- [ ] Implementar a troca de pacotes entre os dispositivos STA, de maneira uniforme ou não, que represente a normalidade;
-  - [ ] Variar o tamanho dos pacotes mices e elephants (matriz de count está igual matriz de bytes);
-  - [ ] Melhorar a alaeatoriedade de escolha dos nós (matriz normal está desbalanceada); 
-- [ ] Capturar os pacotes que trafegam nos switches SW 1~5 utilizando wireshark ou tcpdump;
-- [ ] Gerar dataset de pacotes de normalidade com intervalos de tempo pré-definido;
-- [ ] Gerar dataset de pacotes de anormalidade;
-
-### Parte 2:
-- [ ] Definir função hash de indexação (source, target);
-- [ ] Gerar estruturas count-min com contagem de bytes;
-- [ ] Gerar estruturas count-min com contagem de pacotes;
-
-### Parte 3:
-A definir: aplicação de técnicas de ML para identificação das anomalias.
