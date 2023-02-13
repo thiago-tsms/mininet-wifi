@@ -3,12 +3,13 @@ Simula uma troca de dados com diferentes fluxos.
 
 
 #### Topologia:
-
-ST --- AP --- SW ---|--- SW --- AP --- ST <br>
-                    | <br>
-                   SW <br>
-                    | <br>
-ST --- AP --- SW ---|--- SW --- AP --- ST <br>
+<p>
+ST --- AP --- SW ---|--- SW --- AP --- ST
+                    |
+                   SW
+                    |
+ST --- AP --- SW ---|--- SW --- AP --- ST
+</p>
 
 
 ## Como começar
