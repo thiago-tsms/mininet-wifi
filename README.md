@@ -16,13 +16,13 @@ Parâmetros de entrada (-f)
 - Número de mice flow
 - Número de elephant flows
 
-mice flow: são gerados com:
+#### mice flow: são gerados com:
 - fluxos simultâneos: 2-8
 - size: 20-500
 - port: 1025-65536
 - interval: {500,625,714,833,1000}
 
-flood flow: são gerados com:
+#### flood flow: são gerados com:
 - size: 500-1400
 - port: 1025-65536
 
