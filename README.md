@@ -35,7 +35,7 @@ Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmet
 - fluxos simultâneos: 2-8
 - size: 20-500
 - port: 1025-65536
-- interval: {500,625,714,833,1000}
+- interval: [500,625,714,833,1000]
 
 #### flood flow: são gerados com:
 - size: 500-1400
