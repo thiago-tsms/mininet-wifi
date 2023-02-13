@@ -5,6 +5,15 @@ Simular a detecção de anomalias no fluxo de informações com auxílio do Mini
 São empregadas estruturas probabilísticas, estruturas fazem uso da um indexação baseada em hashing, com intuito de reduzir o espaço em memória e a complexidade dos dados representados. 
 O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma matriz cujas posições são incrementadas a cada retorno de um hash. O hash é aplicado aos elementos de um fluxo de dados obtidos em um intervalo de tempo.
 
+#### Metodologia:
+- Desenvolver a topologia de rede no Mininet Wifi;
+- Similar tráfegos normalidade entre os dispositivos;
+- Adicionar anomalias ao tráfego;
+- Capturar os pacotes da rede;
+- Gerar as estruturas probabilísticas;
+- Extrair métricas probabilísticas;
+- Aplicar Aprendizado de Máquina às métrica para identificar intervalos de tempo.
+
 
 
 
