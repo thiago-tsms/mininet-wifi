@@ -17,6 +17,18 @@ O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma m
 - Aplicar Aprendizado de Máquina às métrica para identificar intervalos de tempo.
 
 
+# Desenvolvimento
+
+
+
+### Estrutura Probabilística usada:
+- Tamanho do contador: 1000 posições;
+- Entrada do hash: IP de Origem, IP de Destino, Porta de Origem, Porta de Destino;
+- Função de Hash: MurmurHash3 32-bits + split em 1000;
+- Dado armazenado: Tamanho do pacote
+- Idade do contador: 5 segundos
+
+
 # Mininet Wifi
 Simula uma troca de dados com diferentes fluxos coletando e armazenando informações dos pacotes de cada um dos switchs em um respectivo PCAP.
 
@@ -44,7 +56,7 @@ Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmet
   - -m : inicia mobilidade (ainda não implementado)
 
 
-## Funcionamento
+## Configurações
 
 #### Parâmetros de entrada (-f)
 - Tempo de execução
@@ -53,10 +65,10 @@ Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmet
 
 #### mice flow: são gerados com:
 - fluxos simultâneos: 2-8
-- size: 20-500
+- size: 20-500 bytes
 - port: 1025-65536
 - interval: [500,625,714,833,1000]
 
 #### flood flow: são gerados com:
-- size: 500-1400
+- size: 500-1400 bytes
 - port: 1025-65536
