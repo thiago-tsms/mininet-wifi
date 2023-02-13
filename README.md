@@ -1,5 +1,5 @@
 # Sobre
-Simula uma troca de dados com diferentes fluxos coletando informações dos pacotes em cada switch e armazenando em um PCAP.
+Simula uma troca de dados com diferentes fluxos coletando e armazenando informações dos pacotes de cada um dos switchs em um respectivo PCAP.
 
 
 #### Topologia:
