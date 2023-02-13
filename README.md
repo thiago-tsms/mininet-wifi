@@ -14,9 +14,7 @@ O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma m
 - Extrair métricas probabilísticas;
 - Aplicar Aprendizado de Máquina às métrica para identificar intervalos de tempo.
 
-
-
-
+# Mininet Wifi
 Simula uma troca de dados com diferentes fluxos coletando e armazenando informações dos pacotes de cada um dos switchs em um respectivo PCAP.
 
 
