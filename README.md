@@ -1,5 +1,15 @@
 # Sobre
-Simula uma troca de dados com diferentes fluxos
+Simula uma troca de dados com diferentes fluxos. 
+
+
+#### Topologia:
+
+ST --- AP --- SW ---|--- SW --- AP --- ST
+                    |
+                   SW
+                    |
+ST --- AP --- SW ---|--- SW --- AP --- ST
+
 
 ## Como começar
 
