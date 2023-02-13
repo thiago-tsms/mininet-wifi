@@ -4,11 +4,11 @@ Simula uma troca de dados com diferentes fluxos.
 
 #### Topologia:
 
-ST --- AP --- SW ---|--- SW --- AP --- ST
-                    |
-                   SW
-                    |
-ST --- AP --- SW ---|--- SW --- AP --- ST
+ST --- AP --- SW ---|--- SW --- AP --- ST <br>
+                    | <br>
+                   SW <br>
+                    | <br>
+ST --- AP --- SW ---|--- SW --- AP --- ST <br>
 
 
 ## Como começar
