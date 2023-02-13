@@ -31,7 +31,7 @@ Simula uma troca de dados com diferentes fluxos coletando e armazenando informa�
 |-- [SW5] <br>
 
 
-## Início:
+## Início
 
 Requisitos:
   - Mininet Wifi
@@ -44,7 +44,7 @@ Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmet
   - -m : inicia mobilidade (ainda não implementado)
 
 
-## Funcionamento:
+## Funcionamento
 
 #### Parâmetros de entrada (-f)
 - Tempo de execução
