@@ -1,20 +1,13 @@
 # Como começar
-Para rodar o sflow é necessário java installado
-sudo apt install default-jre
 
-o download do sflow pode ser feito com
-wget https://inmon.com/products/sFlow-RT/sflow-rt.tar.gz
-tar -xvzf sflow-rt.tar.gz
-cd sflow-rt
+Requisitos:
+  - Mininet Wifi
+  - Hping3
 
-para inciá-lo, rode
-./start.sh
-
-a partir disso, o a topologia mobilidade.py pode ser iniciada
-
-# Trabalho Laboratório de Redes
-
-Este trabalho tem como objetivo aplicar técnicas de aprendizado de máquinas para detecção de anomalias em redes de computadores a partir da medição de tráfego por meio de estruturas de dados probabilísticas (sketches), utilizando para isso simulações através do mininet-wifi.
+Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmetros:
+  -> -f : gerar os fluxos
+  -> -p : plotar posição dos access point
+  -> -m : inicia mobilidade (ainda não implementado)
 
 ## TODO:
 ### Parte 1:
