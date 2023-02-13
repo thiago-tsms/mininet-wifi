@@ -51,7 +51,7 @@ def start_topologia(args):
     net.addLink(sw4, sw5)
     
 
-    if '-mobility' in args:
+    if '-m' in args:
         mobilidade(net)
 
     if '-p' in args:
