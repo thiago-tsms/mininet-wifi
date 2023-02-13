@@ -1,9 +1,11 @@
 # Objetivo
 Simular a detecção de anomalias no fluxo de informações com auxílio do Mininet Wifi e Aprendizado de Máquina.
 
+
 # Sobre
 São empregadas estruturas probabilísticas, estruturas fazem uso da um indexação baseada em hashing, com intuito de reduzir o espaço em memória e a complexidade dos dados representados. 
 O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma matriz cujas posições são incrementadas a cada retorno de um hash. O hash é aplicado aos elementos de um fluxo de dados obtidos em um intervalo de tempo.
+
 
 #### Metodologia:
 - Desenvolver a topologia de rede no Mininet Wifi;
@@ -13,6 +15,7 @@ O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma m
 - Gerar as estruturas probabilísticas;
 - Extrair métricas probabilísticas;
 - Aplicar Aprendizado de Máquina às métrica para identificar intervalos de tempo.
+
 
 # Mininet Wifi
 Simula uma troca de dados com diferentes fluxos coletando e armazenando informações dos pacotes de cada um dos switchs em um respectivo PCAP.
@@ -28,7 +31,7 @@ Simula uma troca de dados com diferentes fluxos coletando e armazenando informa�
 |-- [SW5] <br>
 
 
-## Como começar
+## Início:
 
 Requisitos:
   - Mininet Wifi
@@ -39,6 +42,7 @@ Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmet
   - -f : gerar os fluxos
   - -p : plotar posição dos access point
   - -m : inicia mobilidade (ainda não implementado)
+
 
 ## Funcionamento:
 
