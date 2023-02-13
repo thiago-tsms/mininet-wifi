@@ -6,9 +6,9 @@ Simula uma troca de dados com diferentes fluxos.
 
 |--- [SW1] --- [AP1] --- [STA1] <br>
 |--- [SW2] --- [AP2] --- [STA2] <br>
-|--- [SW3] --- [AP3] --- [STA3} <br>
+|--- [SW3] --- [AP3] --- [STA3] <br>
 |--- [SW4] --- [AP4] --- [STA4] <br>
-|
+| <br>
 |-- [SW5] <br>
 
 
