@@ -5,9 +5,9 @@ Requisitos:
   - Hping3
 
 Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmetros:
-  -> -f : gerar os fluxos
-  -> -p : plotar posição dos access point
-  -> -m : inicia mobilidade (ainda não implementado)
+  - -f : gerar os fluxos
+  - -p : plotar posição dos access point
+  - -m : inicia mobilidade (ainda não implementado)
 
 ## TODO:
 ### Parte 1:
