@@ -6,6 +6,7 @@ Simular a detecção de anomalias no fluxo de informações com auxílio do Mini
 São empregadas estruturas probabilísticas, estruturas fazem uso da um indexação baseada em hashing, com intuito de reduzir o espaço em memória e a complexidade dos dados representados. 
 O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma matriz cujas posições são incrementadas a cada retorno de um hash. O hash é aplicado aos elementos de um fluxo de dados obtidos em um intervalo de tempo.
 
+# Esperimento
 
 #### Metodologia:
 - Desenvolver a topologia de rede no Mininet Wifi;
@@ -17,31 +18,9 @@ O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma m
 - Aplicar Aprendizado de Máquina às métrica para identificar intervalos de tempo.
 
 
-# Desenvolvimento
-
-#### Estrutura Probabilística usada:
-- Tamanho do contador: 1000 posições;
-- Entrada do hash: IP de Origem, IP de Destino, Porta de Origem, Porta de Destino;
-- Função de Hash: MurmurHash3 32-bits + split em 1000;
-- Dado armazenado: Tamanho do pacote;
-- Idade do contador: 5 segundos.
-
-#### Métricas usadas:
-- média
-- mediana
-- índice do maior valor
-- maior valor
-- soma dos elementos
-- número de não-zeros
-- desvio padrão (σ)
-- n° de elementos 2x maiores que σ
-- n° de elementos 3x maiores que σ
-
-
 
 # Mininet Wifi
 Simula uma troca de dados com diferentes fluxos coletando e armazenando informações dos pacotes de cada um dos switchs em um respectivo PCAP.
-
 
 #### Topologia:
 
@@ -53,9 +32,7 @@ Simula uma troca de dados com diferentes fluxos coletando e armazenando informa�
 |-- [SW5] <br>
 
 
-## Início
-
-Requisitos:
+#### Requisitos:
   - Mininet Wifi
   - Hping3
   - tcpdump
@@ -82,3 +59,24 @@ Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmet
 #### flood flow: são gerados com:
 - size: 500-1400 bytes
 - port: 1025-65536
+
+
+# Aprendizado de Máquina
+
+#### Estrutura Probabilística:
+- Tamanho do contador: 1000 posições;
+- Entrada do hash: IP de Origem, IP de Destino, Porta de Origem, Porta de Destino;
+- Função de Hash: MurmurHash3 32-bits + split em 1000;
+- Dado armazenado: Tamanho do pacote;
+- Idade do contador: 5 segundos.
+
+#### Métricas:
+- média
+- mediana
+- índice do maior valor
+- maior valor
+- soma dos elementos
+- número de não-zeros
+- desvio padrão (σ)
+- n° de elementos 2x maiores que σ
+- n° de elementos 3x maiores que σ
