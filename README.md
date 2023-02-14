@@ -1,4 +1,8 @@
 # Sobre
+Código desenvolvido para simulação e estudos de fluxos na rede.
+
+É empregado o Mininet Wifi e o Google Colab.
+
 São empregadas estruturas probabilísticas, estruturas fazem uso da um indexação baseada em hashing, com intuito de reduzir o espaço em memória e a complexidade dos dados representados. 
 O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma matriz cujas posições são incrementadas a cada retorno de um hash. O hash é aplicado aos elementos de um fluxo de dados obtidos em um intervalo de tempo.
 
