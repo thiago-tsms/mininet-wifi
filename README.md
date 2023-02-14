@@ -81,7 +81,7 @@ Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmet
 - n° de elementos 3x maiores que σ
 
 Classificação doa dados:
-- Rede Neural
-- Random Forest
-- AdaBoost
-- Naive Bayes
+- Rede Neural;
+- Random Forest;
+- AdaBoost;
+- Naive Bayes.
