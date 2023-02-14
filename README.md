@@ -66,7 +66,7 @@ Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmet
 - port: 1025-65536
 
 
-# Aprendizado de Máquina
+# Google Colab
 
 #### Estrutura Probabilística:
 - Tamanho do contador: 1000 posições;
