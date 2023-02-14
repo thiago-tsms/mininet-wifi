@@ -21,7 +21,7 @@ Simular a detecção de anomalias no fluxo de informações com auxílio do Mini
 - Aplicar Aprendizado de Máquina às métrica para identificar intervalos de tempo.
 
 #### Desenvolvimento
-Foram gerados datasets de 15 min (900 seg) de duração total , contendo 30 fluxos anômalos e 150 fluxos normais, com 5 segundos de duração cada.
+Foram gerados datasets de 15 min (900 seg) de duração total, contendo 30 fluxos anômalos e 150 fluxos normais, com 5 segundos de duração cada. Aos dados obtidos foram aplicados as estruturas probabilísticas, extraído as métricas e aplicado o algorítmo de aprendizagem.
 
 #### Resultado dos algorítmos
 ![alt text](resultado-classificacao.png)
