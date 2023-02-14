@@ -70,6 +70,7 @@ Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmet
 
 
 # Google Colab
+Implementa as estruturas probabilísticas, extrai as mátricas e aplica aos técnicas de aprendizado de máquina.
 
 #### Estrutura Probabilística:
 - Tamanho do contador: 1000 posições;
