@@ -1,12 +1,11 @@
-# Objetivo
-Simular a detecção de anomalias no fluxo de informações com auxílio do Mininet Wifi e Aprendizado de Máquina.
-
-
 # Sobre
 São empregadas estruturas probabilísticas, estruturas fazem uso da um indexação baseada em hashing, com intuito de reduzir o espaço em memória e a complexidade dos dados representados. 
 O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma matriz cujas posições são incrementadas a cada retorno de um hash. O hash é aplicado aos elementos de um fluxo de dados obtidos em um intervalo de tempo.
 
 # Experimento
+
+#### Objetivo
+Simular a detecção de anomalias no fluxo de informações com auxílio do Mininet Wifi e Aprendizado de Máquina.
 
 #### Metodologia:
 - Desenvolver a topologia de rede no Mininet Wifi;
