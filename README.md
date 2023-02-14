@@ -80,15 +80,15 @@ Implementa as estruturas probabilísticas, extrai as mátricas e aplica aos téc
 - Idade do contador: 5 segundos.
 
 #### Métricas:
-- média
-- mediana
-- índice do maior valor
-- maior valor
-- soma dos elementos
-- número de não-zeros
-- desvio padrão (σ)
-- n° de elementos 2x maiores que σ
-- n° de elementos 3x maiores que σ
+- média;
+- mediana;
+- índice do maior valor;
+- maior valor;
+- soma dos elementos;
+- número de não-zeros;
+- desvio padrão (σ);
+- n° de elementos 2x maiores que σ;
+- n° de elementos 3x maiores que σ.
 
 Classificação doa dados:
 - Rede Neural;
