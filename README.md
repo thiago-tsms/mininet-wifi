@@ -1,15 +1,18 @@
 # Sobre
-Código desenvolvido para simulação e estudos de fluxos na rede.
+Códigos e datasets desenvolvidos para simulação e estudos de fluxos na rede.
 
-É empregado o Mininet Wifi e o Google Colab.
+Foram utilizados o Mininet Wifi para definição da topologia de rede, simulação dos tráfegos e geração dos dataeets, além do Google Colaboratory para processamento dos dados e aplicação do Aprendizado de Máquina.
 
-São empregadas estruturas probabilísticas, estruturas fazem uso da um indexação baseada em hashing, com intuito de reduzir o espaço em memória e a complexidade dos dados representados. 
-O tipo de estrutura probabilística usado é o Counter-Min, consistindo de uma matriz cujas posições são incrementadas a cada retorno de um hash. O hash é aplicado aos elementos de um fluxo de dados obtidos em um intervalo de tempo.
+O objetivo deste estudo é analisar o uso de estruturas probabilísticas para armazenar informações osbre o tráfego de uma rede e posteriormente utilizá-las para detecção de anomalias.
+
+As estruturas probabilísticas fazem uso da um indexação probabilística (em detrimento das convencionais, que são determinísticas) baseada em hashing, com intuito de reduzir o espaço em memória e a complexidade dos dados representados. 
+
+O tipo de estrutura probabilística utilizado neste experimento é o Counter-Min, consistindo de uma matriz cujas posições são incrementadas a cada retorno de um hash. O hash é aplicado aos elementos de um fluxo de dados obtidos em um intervalo de tempo.
 
 # Experimento
 
 #### Objetivo
-Simular a detecção de anomalias no fluxo de informações com auxílio do Mininet Wifi e Aprendizado de Máquina.
+Simular a detecção de anomalias no fluxo de informações com auxílio de Estruturas Probabilísticas e Aprendizado de Máquina, a partir de simulações utilizando o MiniNet Wifi.
 
 #### Metodologia:
 - Desenvolver a topologia de rede no Mininet Wifi;
@@ -23,7 +26,7 @@ Simular a detecção de anomalias no fluxo de informações com auxílio do Mini
 #### Desenvolvimento
 Foram gerados datasets de 15 min (900 seg) de duração total, contendo 30 fluxos anômalos e 150 fluxos normais, com 5 segundos de duração cada. Aos dados obtidos foram aplicados as estruturas probabilísticas, extraído as métricas e aplicado o algorítmo de aprendizagem.
 
-##### Foram gerados para classificação datasets de:
+##### Para classificação, foram utilizados os seguintes datasets:
 - 10 min para treino;
 - 5 min para validação;
 - 15 min para teste.
@@ -50,28 +53,30 @@ Simula uma troca de dados com diferentes fluxos coletando e armazenando informa�
   - Hping3
   - tcpdump
 
-Para a geração dos Fluxos de dados execute o main.py com os seguintes parâmetros:
-  - -f : gerar os fluxos
-  - -p : plotar posição dos access point
-  - -m : inicia mobilidade (ainda não implementado)
+Para a geração dos Fluxos de dados execute o main.py com as seguintes flags:
+  - -f : para definir e gerar os fluxos;
+  - -p : para plotar a topologia de rede utilizada;
+  - -m : para ativar a mobilidade das estações no espaço coberto pela rede.
 
 
 ### Configurações
 
 #### Parâmetros de entrada (-f)
-- Tempo de execução
-- Número de mice flow
-- Número de elephant flows
+- Tempo T de execução (em segundos);
+- Número M de mice flows;
+- Número N de elephant flows;
 
-#### mice flow: são gerados com:
-- fluxos simultâneos: 2-8
-- size: 20-500 bytes
-- port: 1025-65536
-- interval: [500,625,714,833,1000]
+O script dividira o periodo de tempo T em N+M intervalos iguais e iniciara os fluxos, com T/N+M segundos cada, aleatoriamente, informando em quais intervalos foram iniciados os fluxos elefante.
 
-#### flood flow: são gerados com:
-- size: 500-1400 bytes
-- port: 1025-65536
+#### intervalos de mice flows:
+- são iniciados 2 a 8 fluxos simultâneos;
+- tamanho dos pacotes: 20 a 500 bytes;
+- portas definidas aleatoriamente entre 1025 e 65536.
+
+#### elephant flows:
+- são iniciados em paralelo aos mice flows;
+- tamanho dos pacotes: 500-1400 bytes;
+- portas definidas aleatoriamente entre: 1025 e 65536.
 
 
 # Google Colab
@@ -80,11 +85,11 @@ Implementa as estruturas probabilísticas, extrai as mátricas e aplica aos téc
 #### Estrutura Probabilística:
 - Tamanho do contador: 1000 posições;
 - Entrada do hash: IP de Origem, IP de Destino, Porta de Origem, Porta de Destino;
-- Função de Hash: MurmurHash3 32-bits + split em 1000;
+- Função de Hash: MurmurHash3 32-bits + split na posição 3 (ie: resultando em um inteiro de 0 a 999);
 - Dado armazenado: Tamanho do pacote;
-- Idade do contador: 5 segundos.
+- Idade de cada contador: 5 segundos.
 
-#### Métricas:
+#### Métricas Extraídas das Estruturas:
 - média;
 - mediana;
 - índice do maior valor;
@@ -95,7 +100,7 @@ Implementa as estruturas probabilísticas, extrai as mátricas e aplica aos téc
 - n° de elementos 2x maiores que σ;
 - n° de elementos 3x maiores que σ.
 
-Classificação doa dados:
+#### Métodos utilizados para classificação doa dados:
 - Rede Neural;
 - Random Forest;
 - AdaBoost;
